@@ -1,5 +1,8 @@
 import yfinance as yf
 
-ticker = yf.Ticker("AAPL")
-data = ticker.history(period="5d")
-print(data["Close"])
+tickers = ["AAPL", "TSLA", "NVDA", "MSFT"]
+
+for symbol in tickers:
+    data = yf.Ticker(symbol).history(period="5d")
+    last_price = data["Close"].iloc[-1]
+    print(symbol, round(last_price, 2))
